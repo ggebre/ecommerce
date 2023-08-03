@@ -1,14 +1,14 @@
 import React from 'react';
 
-import { client } from '../lib/client';
+import { client} from '../lib/client';
 import {Product, FooterBanner, HeroBanner}
  from '../components/index';
 
  async function Home () {
-  const products =  await getData()
+  const { products, bannerData }=  await getData()
   return (
     <>
-    <HeroBanner />
+    <HeroBanner heroBanner={bannerData.length  && bannerData[0]}/>
     
     <div className='products-heading'> 
       <h2>Best Selling Products</h2>
@@ -24,17 +24,15 @@ import {Product, FooterBanner, HeroBanner}
   )
 }
 export async function getData() {
-    const data = await client.fetch('*[_type == "product"]');
+    const query = '*[_type == "product"]'
+    const products = await client.fetch(query);
     
-    // if (!products.ok){
-    //   throw new Error("Failted to fetch data");
-    // }
-    return data
-    // return {
-    //   props: {
-    //     products
-    //   }
-    // };
+
+    const bannerQuery = '*[_type == "banner"]'
+    const bannerData = await client.fetch(bannerQuery);
+    
+    return {products, bannerData}
+    
 }
 export default Home
 
