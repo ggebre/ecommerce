@@ -1,12 +1,14 @@
 import React from 'react';
 import {client, urlFor} from '../../../lib/client';
 import {AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { Product } from '@/components';
 
 async function ProductDetail ({params}) {
     const {product, products}=  await getData(params);
     const {image, name, details, price } = product;
     return (
         <>
+
         <div className='product-detail-container'>
             <div>
                 <div className='image-container'>
@@ -65,7 +67,20 @@ async function ProductDetail ({params}) {
                     </div>
                 </div>
             </div>
+            
         </div>
+        <div className='maylike-products-wrapper'>
+                <h2>You may also like</h2>
+                <div className='marquee'>
+                    <div className='maylike-products-container track'>
+                        {products.map((item) => (
+                            <Product key={item._id} 
+                                product={item} />
+                        ))}
+                    </div>
+                </div>
+
+            </div>
         </>
     )
 }
