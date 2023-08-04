@@ -15,7 +15,7 @@ import {Product, FooterBanner, HeroBanner}
       <p>Speakers of many variations</p>
 
       <div className='products-container'>
-        {products.map((product, key) => <Product key={key} product={product}/> )}
+        {products.map((product) => <Product key={product._id} product={product}/> )}
       </div>
     </div>
     <FooterBanner footerBanner={bannerData.length  && bannerData[0]}/>
