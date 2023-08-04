@@ -1,4 +1,5 @@
-import React from 'react';
+import React  from 'react';
+// import React, {useState} from 'react';
 import {client, urlFor} from '../../../lib/client';
 import {AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { Product } from '@/components';
@@ -6,16 +7,18 @@ import { Product } from '@/components';
 async function ProductDetail ({params}) {
     const {product, products}=  await getData(params);
     const {image, name, details, price } = product;
+    // const [index, setIndex] = useState(0);
+    
     return (
         <>
 
         <div className='product-detail-container'>
             <div>
                 <div className='image-container'>
-                    {/* <img src={urlFor(image && image[0])} /> */}
-                    <img src='' />
+                    {/* <img src={urlFor(image && image[index])} /> */}
+                    <img src='' alt='image'/>
                 </div>
-                {/* <div className='small-images-container'>
+                <div className='small-images-container'>
                     {image?.map((item, i) => (
                         <img 
                             key={i}
@@ -25,7 +28,7 @@ async function ProductDetail ({params}) {
                             onMouseEnter=""
                         />
                     ))}
-                </div> */}
+                </div>
                 <div className='product-detail-desc' >
                     <h1>{name}</h1>
                     <div className='reviews'>
@@ -90,11 +93,11 @@ async function ProductDetail ({params}) {
 export async function getData({slug}) {
     const productQuery = `*[_type == 'product' && slug.current == '${slug}'][0]`
     const product = await client.fetch(productQuery);
-    console.log(product)
+    
     
     const prductsQuery = '*[_type == "product"]'
     const products = await client.fetch(prductsQuery);
-
+    
     
     return {product, products}
     

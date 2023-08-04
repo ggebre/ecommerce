@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { urlFor } from '@/lib/client';
 
 const Product = ({product: {image, name, slug, price}}) => {
-    console.log(slug.current)
+    
     return (
             <div className='product-card' >
                 <Link href={`/product/${slug.current}`}>
