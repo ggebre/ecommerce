@@ -18,7 +18,7 @@ import {Product, FooterBanner, HeroBanner}
         {products.map((product, key) => <Product key={key} product={product}/> )}
       </div>
     </div>
-    <FooterBanner />
+    <FooterBanner footerBanner={bannerData.length  && bannerData[0]}/>
     </>
     
   )
