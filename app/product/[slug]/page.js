@@ -7,19 +7,15 @@ import { Product } from '@/components';
 async function ProductDetail ({params}) {
     const {product, products}=  await getData(params);
     const {image, name, details, price } = product;
-    const {images} = products;
-    console.log(products)
-    // const [index, setIndex] = useState(0);
     
     return (
-        <>
+        <div>
 
         <div className='product-detail-container'>
             
             <div>
                 <div className='image-container'>
-                    <img src={urlFor(image && image[0])} />
-                    
+                    <img src={urlFor(image && image[0])} />    
                 </div>
                 <div className='small-images-container'>
                     {products?.map((item, i) => (
@@ -31,6 +27,8 @@ async function ProductDetail ({params}) {
                         />
                     ))}
                 </div>
+            </div> 
+            <div>
                 <div className='product-detail-desc' >
                     <h1>{name}</h1>
                     <div className='reviews'>
@@ -86,7 +84,7 @@ async function ProductDetail ({params}) {
                 </div>
 
             </div>
-        </>
+        </div>
     )
 }
 
