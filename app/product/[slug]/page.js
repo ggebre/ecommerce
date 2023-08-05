@@ -7,6 +7,8 @@ import { Product } from '@/components';
 async function ProductDetail ({params}) {
     const {product, products}=  await getData(params);
     const {image, name, details, price } = product;
+    const {images} = products;
+    console.log(products)
     // const [index, setIndex] = useState(0);
     
     return (
@@ -20,10 +22,10 @@ async function ProductDetail ({params}) {
                     
                 </div>
                 <div className='small-images-container'>
-                    {image?.map((item, i) => (
+                    {products?.map((item, i) => (
                         <img 
                             key={i}
-                            src={urlFor(item)}
+                            src={urlFor(item.image)}
                             className=''
                             onMouseEnter=""
                         />
@@ -52,7 +54,7 @@ async function ProductDetail ({params}) {
                             <span className='minus' onClick="">
                                 <AiOutlineMinus />
                             </span>
-                            <span className='num' onClick="">
+                            <span className='num'>
                                 0
                             </span>
                             <span className='plus' onClick="">
