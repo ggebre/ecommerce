@@ -21,7 +21,7 @@ async function ProductDetail ({params}) {
                     {products?.map((item, i) => (
                         <img 
                             key={i}
-                            src={urlFor(item.image)}
+                            src={urlFor(item.image[0])}
                             className=''
                             onMouseEnter=""
                         />
