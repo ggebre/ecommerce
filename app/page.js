@@ -6,6 +6,7 @@ import {Product, FooterBanner, HeroBanner}
 
  async function Home () {
   const { products, bannerData }=  await getData()
+
   return (
     <>
     <HeroBanner heroBanner={bannerData.length  && bannerData[0]}/>

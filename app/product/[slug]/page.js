@@ -13,17 +13,17 @@ async function ProductDetail ({params}) {
         <>
 
         <div className='product-detail-container'>
+            
             <div>
                 <div className='image-container'>
-                    {/* <img src={urlFor(image && image[index])} /> */}
-                    <img src='' alt='image'/>
+                    <img src={urlFor(image && image[0])} />
+                    
                 </div>
                 <div className='small-images-container'>
                     {image?.map((item, i) => (
                         <img 
                             key={i}
-                            // src={urlFor(item)}
-                            src=''
+                            src={urlFor(item)}
                             className=''
                             onMouseEnter=""
                         />
@@ -97,6 +97,7 @@ export async function getData({slug}) {
     
     const prductsQuery = '*[_type == "product"]'
     const products = await client.fetch(prductsQuery);
+    
     
     
     return {product, products}
