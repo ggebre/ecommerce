@@ -22,7 +22,7 @@ async function ProductDetail ({params}) {
                         <img 
                             key={i}
                             src={urlFor(item.image[0])}
-                            className=''
+                            className='small-image'
                             onMouseEnter=""
                         />
                     ))}
