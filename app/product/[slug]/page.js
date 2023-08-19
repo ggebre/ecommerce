@@ -28,7 +28,7 @@ async function ProductDetail ({params}) {
                     ))}
                 </div>
             </div> 
-            <div>
+            
                 <div className='product-detail-desc' >
                     <h1>{name}</h1>
                     <div className='reviews'>
@@ -68,9 +68,7 @@ async function ProductDetail ({params}) {
                             className='buy-now'
                             onClick="">Buy Now</button>
                     </div>
-                </div>
-            </div>
-            
+                </div>   
         </div>
         <div className='maylike-products-wrapper'>
                 <h2>You may also like</h2>
