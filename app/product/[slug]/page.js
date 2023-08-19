@@ -91,6 +91,7 @@ async function ProductDetail ({params}) {
 
 
 export async function getData({slug}) {
+    
     const productQuery = `*[_type == 'product' && slug.current == '${slug}'][0]`
     const product = await client.fetch(productQuery);
     
