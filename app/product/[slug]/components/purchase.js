@@ -1,7 +1,10 @@
+'use client'
 import {AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { useStateContext } from '@/context/StateContext';
 export default function Purchase ({ product }) {
     
     const {image, name, details, price } = product;
+    const { decQty, incQty, qty} = useStateContext();
     return (
         <div className='product-detail-desc' >
                     <h1>{name}</h1>
@@ -23,13 +26,13 @@ export default function Purchase ({ product }) {
                     <div className='quantity'>
                         <h3>Quantity:</h3>
                         <p className='quantity-desc'>
-                            <span className='minus' onClick="">
+                            <span className='minus' onClick={decQty}>
                                 <AiOutlineMinus />
                             </span>
                             <span className='num'>
-                                0
+                                {qty}
                             </span>
-                            <span className='plus' onClick="">
+                            <span className='plus' onClick={incQty}>
                                 <AiOutlinePlus />
                             </span>
                         </p>
