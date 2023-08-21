@@ -1,8 +1,8 @@
 import React  from 'react';
-// import React, {useState} from 'react';
 import {client, urlFor} from '../../../lib/client';
 import {AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import { Product } from '@/components';
+import ProductImage from './components/image';
 
 async function ProductDetail ({params}) {
     const {product, products}=  await getData(params);
@@ -13,21 +13,7 @@ async function ProductDetail ({params}) {
 
         <div className='product-detail-container'>
             
-            <div>
-                <div className='image-container'>
-                    <img src={urlFor(image && image[0])} />    
-                </div>
-                <div className='small-images-container'>
-                    {products?.map((item, i) => (
-                        <img 
-                            key={i}
-                            src={urlFor(item.image[0])}
-                            className='small-image'
-                            onMouseEnter=""
-                        />
-                    ))}
-                </div>
-            </div> 
+                <ProductImage product={product}/>
             
                 <div className='product-detail-desc' >
                     <h1>{name}</h1>
