@@ -1,7 +1,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google';
 import { Navbar, Footer, Layout } from '@/components';
-
+import { StateContext } from '@/context/StateContext';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -14,17 +14,19 @@ export default function RootLayout({ children }) {
     <html lang="en">
       {/* <body className={inter.className}>{children}</body> */}
       <body className={inter.className}>
-        <div className='layout'>
-          <header>
-            <Navbar />
-          </header>
-          <main className='main-container'>
-              {children}
-          </main>
-          <footer>
-              <Footer />
-          </footer>
-        </div>
+        <StateContext>
+          <div className='layout'>
+            <header>
+              <Navbar />
+            </header>
+            <main className='main-container'>
+                {children}
+            </main>
+            <footer>
+                <Footer />
+            </footer>
+          </div>
+        </StateContext>
       </body>
     </html>
   )
