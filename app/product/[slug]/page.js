@@ -1,6 +1,5 @@
 import React  from 'react';
-import {client, urlFor} from '../../../lib/client';
-
+import {client} from '../../../lib/client';
 import { Product } from '@/components';
 import Purchase from './components/purchase';
 import ProductImage from './components/image';
