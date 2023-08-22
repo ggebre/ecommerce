@@ -35,6 +35,17 @@ export const StateContext = ( { children }) => {
             setCartItems([...cartItems, {...product}])
         }
     }
+
+    const onRemove = (product) => {
+        // find the product in the cartItems to be removed 
+        foundProduct = cartItems.find(item => item._id === product._id);
+        const cartItemsRemoveFoundProduct = cartItems.filter((item ) => item._id !== product._id);
+
+        setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price * foundProduct.quantity )
+        setTotalQuantitites(prevTotalQuantities => prevTotalQuantities - foundProduct.quantity) 
+        setCartItems(cartItemsRemoveFoundProduct)
+
+    }
     const toggleCartItemQuantity = (id, value) => {
         foundProduct = cartItems.find(item => item._id === id);
         index = cartItems.findIndex(product => product._id === id);
@@ -84,7 +95,8 @@ export const StateContext = ( { children }) => {
                 incQty, 
                 decQty,
                 onAdd,
-                toggleCartItemQuantity
+                toggleCartItemQuantity,
+                onRemove
             }}>
                 { children }
         </Context.Provider>  
