@@ -4,7 +4,7 @@ import { useStateContext } from '@/context/StateContext';
 export default function Purchase ({ product }) {
     
     const {image, name, details, price } = product;
-    const { decQty, incQty, qty} = useStateContext();
+    const { decQty, incQty, qty, onAdd} = useStateContext();
     return (
         <div className='product-detail-desc' >
                     <h1>{name}</h1>
@@ -40,7 +40,7 @@ export default function Purchase ({ product }) {
                     <div className='buttons'>
                         <button type='button' 
                             className='add-to-cart'
-                            onClick="">Add to Cart</button>
+                            onClick={() => onAdd(product, qty)}>Add to Cart</button>
                         <button type='button' 
                             className='buy-now'
                             onClick="">Buy Now</button>
