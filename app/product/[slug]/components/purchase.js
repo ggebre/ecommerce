@@ -43,7 +43,7 @@ export default function Purchase ({ product }) {
                             onClick={() => onAdd(product, qty)}>Add to Cart</button>
                         <button type='button' 
                             className='buy-now'
-                            onClick="">Buy Now</button>
+                            onClick={() => console.log("ONCLICK")}>Buy Now</button>
                     </div>
                 </div>   
     )
