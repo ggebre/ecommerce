@@ -24,12 +24,13 @@ const Cart = () => {
             },
             body: JSON.stringify({cartItems})
         })
-        if(response.statusCode === 500) return 
+        
+        if(response.status === 500) return 
 
         const data = await response.json();
         
        
-        // stripe.redirectToCheckout({ sessionId: data.id})
+        stripe.redirectToCheckout({ sessionId: data.session.id})
     }
     return (
         <div className='cart-wrapper' ref={cartRef}>

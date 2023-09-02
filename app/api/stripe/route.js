@@ -2,7 +2,7 @@ import Stripe from 'stripe';
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 import { NextResponse } from 'next/server'
-export async function POST(req, res) {
+export async function POST(req) {
   const response = await req.json();
     try {
         const params = {
@@ -33,19 +33,17 @@ export async function POST(req, res) {
                 quantity: item.quantity 
               }
             }),
-            success_url: `${req.headers.origin}/?success=true`,
-            cancel_url: `${req.headers.origin}/?canceled=true`,
+            success_url: `${req.headers.get('origin')}/?success=true`,
+            cancel_url: `${req.headers.get('origin')}/?canceled=true`,
           }
       // // Create Checkout Sessions from body params.
       const session = await stripe.checkout.sessions.create(params);
       
       // res.status(200).json(session)
-      // NextResponse.json({status: 200})
+       return NextResponse.json({status: 200, session})
     } catch (err) {
+      return NextResponse.json({ error: err.message }, { status: err.statusCode || 500 })
       
-      res.status(err.statusCode || 500).json(err.message);
     }
- 
-  return NextResponse.json({name: "GETU"})
 }
 
