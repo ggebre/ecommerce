@@ -1,7 +1,8 @@
 import Stripe from 'stripe';
+import { NextResponse } from 'next/server';
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-import { NextResponse } from 'next/server'
 export async function POST(req) {
   const response = await req.json();
     try {
@@ -16,7 +17,8 @@ export async function POST(req) {
             ],
             line_items: response.cartItems.map(item => {
               const img = item.image[0].asset._ref;
-              const newImage = img.replace('image-', 'https://cdn.sanity.io/images/t7l7pyhh/production/').replace('-webp', '.webp');
+              const stripeProjectId = "t7l7pyhh"
+              const newImage = img.replace('image-', `https://cdn.sanity.io/images/${stripeProjectId}/production/`).replace('-webp', '.webp');
               return {
                 price_data: {
                   currency: 'usd',
@@ -40,10 +42,9 @@ export async function POST(req) {
       const session = await stripe.checkout.sessions.create(params);
       
       // res.status(200).json(session)
-       return NextResponse.json({status: 200, session})
+      return NextResponse.json({status: 200, session})
     } catch (err) {
-      return NextResponse.json({ error: err.message }, { status: err.statusCode || 500 })
-      
+      return NextResponse.json({ error: err.message }, { status: err.statusCode || 500 }) 
     }
 }
 
