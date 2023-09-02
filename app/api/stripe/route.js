@@ -35,8 +35,8 @@ export async function POST(req) {
                 quantity: item.quantity 
               }
             }),
-            success_url: `${req.headers.get('origin')}/?success=true`,
-            cancel_url: `${req.headers.get('origin')}/?canceled=true`,
+            success_url: `${req.headers.get('origin')}/success`,
+            cancel_url: `${req.headers.get('origin')}/canceled`,
           }
       // // Create Checkout Sessions from body params.
       const session = await stripe.checkout.sessions.create(params);
